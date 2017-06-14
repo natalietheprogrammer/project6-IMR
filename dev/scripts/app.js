@@ -42,13 +42,13 @@ const instrDetailsList = {
 		id: 2,
 		renderName: 'Latitude',
 		renderUnit: '',
-		placeholder: ''
+		placeholder: '+N or -S'
 	},
 	longitude: {
 		id: 3,
 		renderName: 'Longitude',
 		renderUnit: '',
-		placeholder: '',
+		placeholder: '+E or -W'
 	},
 	gsElev: {
 		id: 4,
@@ -283,7 +283,7 @@ class AddInstrument extends React.Component {
 
 						<h2>Input Data</h2>
 						<ul>
-							<li className="readingsInput">
+							<li className="readingsInput hideWhenSmall">
 								<div className="col1 colHeader">ID</div>
 								<div className="col2 colHeader">Reading<span>(m)</span></div>
 								<div className="col3 colHeader">Date <span className="dateFormat"></span></div>
@@ -296,8 +296,8 @@ class AddInstrument extends React.Component {
 											<div className="instrIdLabel">
 												<label key = {i + 'datainput_label'} htmlFor={v.instrType+v.instrNum}>{v.instrType}-{v.instrNum}</label>
 											</div>
-											<input name = {`${v.instrType+v.instrNum}-Reading`} value={this.state[`${v.instrType+v.instrNum}-Reading`]} onChange={this.handleChange_readingValue} key={i + 'readingValue'} type="text" className="readingInput" id={v.instrType+v.instrNum} />
-											<input name = {`${v.instrType+v.instrNum}-Date`} value={this.state[`${v.instrType+v.instrNum}-Date`]} onChange={this.handleChange_readingValue} key={i + 'dateValue'} type="date" className="dateInput" id={v.instrType+v.instrNum}/>														
+											<p className="revealWhenSmall">Reading: <span>(m)</span></p><input name = {`${v.instrType+v.instrNum}-Reading`} value={this.state[`${v.instrType+v.instrNum}-Reading`]} onChange={this.handleChange_readingValue} key={i + 'readingValue'} type="text" className="readingInput" id={v.instrType+v.instrNum} />
+											<p className="revealWhenSmall">Date: </p><input name = {`${v.instrType+v.instrNum}-Date`} value={this.state[`${v.instrType+v.instrNum}-Date`]} onChange={this.handleChange_readingValue} key={i + 'dateValue'} type="date" className="dateInput" id={v.instrType+v.instrNum}/>														
 											<input key = {i + 'datainput_submit'} onClick={()=>this.handleSubmit_newData(v.instrType+v.instrNum)} className="submitDataInput" value="Add Data"/>
 											<button onClick={(e)=>this.removeInstrument(e,v.instrType+v.instrNum)}>x</button>
 										</form>
@@ -313,8 +313,8 @@ class AddInstrument extends React.Component {
 											<div className="instrIdLabel">
 												<label key = {i + 'datainput_label'} htmlFor={v.instrType+v.instrNum}>{v.instrType}-{v.instrNum}</label>
 											</div>
-											<input name = {`${v.instrType+v.instrNum}-Reading`} value={this.state[`${v.instrType+v.instrNum}-Reading`]} onChange={this.handleChange_readingValue} key={i + 'readingValue'} type="text" className="readingInput" id={v.instrType+v.instrNum} />
-											<input name = {`${v.instrType+v.instrNum}-Date`} value={this.state[`${v.instrType+v.instrNum}-Date`]} onChange={this.handleChange_readingValue} key={i + 'dateValue'} type="date" className="dateInput" id={v.instrType+v.instrNum}/>														
+											<p className="revealWhenSmall">Reading: <span>(m)</span></p><input name = {`${v.instrType+v.instrNum}-Reading`} value={this.state[`${v.instrType+v.instrNum}-Reading`]} onChange={this.handleChange_readingValue} key={i + 'readingValue'} type="text" className="readingInput" id={v.instrType+v.instrNum} />
+											<p className="revealWhenSmall">Date: </p><input name = {`${v.instrType+v.instrNum}-Date`} value={this.state[`${v.instrType+v.instrNum}-Date`]} onChange={this.handleChange_readingValue} key={i + 'dateValue'} type="date" className="dateInput" id={v.instrType+v.instrNum}/>														
 											<input key = {i + 'datainput_submit'} onClick={()=>this.handleSubmit_newData(v.instrType+v.instrNum)} className="submitDataInput" value="Add Data"/>
 											<button onClick={(e)=>this.removeInstrument(e,v.instrType+v.instrNum)}>x</button>
 										</form>

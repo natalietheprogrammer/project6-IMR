@@ -219,7 +219,7 @@ class AddInstrument extends React.Component {
 		// console.log('spzInstruments', spzInstruments);
 
 	    var showAreYouSure = {
-	      display: this.state.areYouSureShow ? "flex" : "none"
+	      display: this.state.areYouSureShow ? "block" : "none"
 	    };
 
 		return (
@@ -260,8 +260,6 @@ class AddInstrument extends React.Component {
 												</div>
 												<div className="inputField">
 													<input name={v} value={this.state[v]} onChange={this.handleChange_newInstrument} key={i + 'instrDetailsInput'} type="text" id={instrDetailsList[v]} placeholder={instrDetailsList[v].placeholder}/>
-													
-
 												</div>
 											</li>
 										)
@@ -276,13 +274,16 @@ class AddInstrument extends React.Component {
 
 					<div className='addData'>
 						<div className="areYouSure" style={showAreYouSure}>
-							<button onClick={()=>this.deleteLastDataValue()}>Yes</button>
-							<button onClick={()=>this.setState({areYouSureShow: false})}>No</button>
+							<p>Delete<span className='areYouSureInstrName'>{this.state.instrToRemove}</span> and all data associated with this instrument?</p>
+							<div>
+								<button onClick={()=>this.deleteLastDataValue()}>Yes</button>
+								<button onClick={()=>this.setState({areYouSureShow: false})}>No</button>
+							</div>
 						</div>
 
 						<h2>Input Data</h2>
 						<ul>
-							<li>
+							<li className="readingsInput">
 								<div className="col1 colHeader">ID</div>
 								<div className="col2 colHeader">Reading<span>(m)</span></div>
 								<div className="col3 colHeader">Date <span className="dateFormat"></span></div>
@@ -291,7 +292,7 @@ class AddInstrument extends React.Component {
 							{spzInstruments.map((v, i) => {
 								return (
 									<li key = {i + 'datainput_li'}>
-										<form>
+										<form className="readingsInput">
 											<div className="instrIdLabel">
 												<label key = {i + 'datainput_label'} htmlFor={v.instrType+v.instrNum}>{v.instrType}-{v.instrNum}</label>
 											</div>
@@ -308,7 +309,7 @@ class AddInstrument extends React.Component {
 							{gmpInstruments.map((v, i) => {
 								return (
 									<li key = {i + 'datainput_li'}>
-										<form>
+										<form className="readingsInput">
 											<div className="instrIdLabel">
 												<label key = {i + 'datainput_label'} htmlFor={v.instrType+v.instrNum}>{v.instrType}-{v.instrNum}</label>
 											</div>

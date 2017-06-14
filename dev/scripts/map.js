@@ -5,7 +5,7 @@ export default class SimpleMap extends Component {
   constructor() {
     super();
     this.state = {  
-      currentZoom: 20,
+      currentZoom: 17,
       center: {lat: 43.6532, lng: -79.3832}      
     }
   }
@@ -60,7 +60,7 @@ class Marker extends Component {
       display: this.state.showMarker ? "block" : "none"
     };
 
-    var markerSize = 100 / this.props.mapZoom;
+    var markerSize = 170 / this.props.mapZoom;
 
     var markerSizeStyle = {
       width: markerSize,
@@ -87,7 +87,7 @@ class Marker extends Component {
                   <p>GS Elev: {this.props.gsElev} (masl)</p>
                   <p>Ref Elev: {this.props.refElev} (masl)</p>
                   <p>Baseline: {this.props.baseline} (m)</p> 
-                  <p>Latest Reading: {readings[0].reading}m on {readings[0].date} </p>             
+                  <p>Latest Reading:</p><p className='instrReadingMap'>{readings[0].reading}m <br/>on {readings[0].date}</p>             
                 </div>
               </div>
               <div className={"marker " + markerSizeStyle + " " + this.props.type + "Marker"} onClick={()=>this.toggleMarker()}>

@@ -75,9 +75,7 @@ class AddInstrument extends React.Component {
 		super();
 			this.state = {
 					areYouSureShow: false,
-					instrToRemove: "",
-				// data = [],
-				// instrumentKey = ''
+					instrToRemove: '',
 					instrType: '',
 					instrNum: '',
 					latitude: '',
@@ -183,14 +181,11 @@ class AddInstrument extends React.Component {
 
 	removeInstrument(e, instrToRemove) {
 		e.preventDefault();
-		console.log('remove instr clicked', instrToRemove);
 
 		this.setState({areYouSureShow: true, instrToRemove: instrToRemove});
 	}
-
 	
 	deleteLastDataValue() {
-		console.log("Deleting last data value", this.state)
 
 		var instrToRemove = this.state.instrToRemove;
 
@@ -202,22 +197,23 @@ class AddInstrument extends React.Component {
 	//END OF NEW DATA
 
 	render() {
-		// console.log("STATE!", this.state);
-		// console.log('dbInstruments', this.state.dbInstruments);
 
+		// make an array of all instruments and their data in state
+		var instruments = Array.from(this.state.dbInstruments);
+
+		// make a new array of all instruments in state, then filter for only SPZs and sort them by ID
 		var spzInstruments = Array.from(this.state.dbInstruments).filter((object) => {
 			return (object.instrType === 'spz')
 		});	
 		spzInstruments.sort(function(a, b){return a.instrNum-b.instrNum});
 	
-
+		// make a new array of all instruments in state, then filter for only GMPs and sort them by ID
 		var gmpInstruments = Array.from(this.state.dbInstruments).filter((object) => {
 			return (object.instrType === 'gmp')
 		});	
 		gmpInstruments.sort(function(a, b){return a.instrNum-b.instrNum});
 
-		// console.log('spzInstruments', spzInstruments);
-
+		// make a variable the check if user is sure they want to perform an action
 	    var showAreYouSure = {
 	      display: this.state.areYouSureShow ? "block" : "none"
 	    };
@@ -230,7 +226,7 @@ class AddInstrument extends React.Component {
 
 				<section className="mapSection">
 					<div id="map" ref="map">
-						<Map instruments={this.state.dbInstruments}/>
+						<Map instruments={instruments}/>
 					</div>
 					<div className="legendSection">
 							<h3>Legend</h3>
